@@ -37,10 +37,11 @@ public class QueueNode<T> {
             return null;
         }
 
-        if (this.head == this.tail) {
+        if (this.head == this.tail && !this.isEmpty()) {
+            T data = this.head.data;
             this.head = null;
             this.tail = null;
-            return this.head.data;
+            return data;
         }
 
         T data = this.head.data;
