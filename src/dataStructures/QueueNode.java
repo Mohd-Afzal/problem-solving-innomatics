@@ -1,7 +1,6 @@
 package dataStructures;
 
 public class QueueNode<T> {
-
     private LinkedListNode<T> head; // front
     private LinkedListNode<T> tail; // back
     private int size;
@@ -37,10 +36,12 @@ public class QueueNode<T> {
             return null;
         }
 
+//        if (this.getSize() == 1) -> there is just one element in the queue
         if (this.head == this.tail && !this.isEmpty()) {
             T data = this.head.data;
             this.head = null;
             this.tail = null;
+            this.size -= 1;
             return data;
         }
 
