@@ -127,6 +127,34 @@ public class BinaryTreeUse {
         return myAns;
     }
 
+
+    // 10 20 30 40 50 60 70 -1 -1 -1 -1 -1 -1 80 -1 -1 90 -1 -1  | 5
+    public static int getHeight(BinaryTreeNode<Integer> root) {
+        // Base case
+        if (root == null) { // there doesnt exist a tree at all
+            return 0;
+        }
+
+        int leftHeight = getHeight(root.leftChild); // leftSubTree
+        int rightHeight = getHeight(root.rightChild); // rightSubTree
+
+        return (1 + Math.max(leftHeight, rightHeight));
+    }
+
+    public static void printGreaterThanX(BinaryTreeNode<Integer> root, int x) {
+
+        if (root == null) {
+            return;
+        }
+
+        printGreaterThanX(root.leftChild, x);
+        printGreaterThanX(root.rightChild, x);
+
+        if (root.data > x) {
+            System.out.print(root.data + " ");
+        }
+    }
+
     public static void main(String[] args) {
 //        BinaryTreeNode<Integer> root = new BinaryTreeNode<>(10);
 //        BinaryTreeNode<Integer> leftChild = new BinaryTreeNode<>(20);
@@ -141,7 +169,9 @@ public class BinaryTreeUse {
 
         BinaryTreeNode<Integer> root = buildTreeLevelWise();
 //        printLevelOrder(root);
-        System.out.println(getSum(root));
+//        System.out.println(getSum(root));
+//        System.out.println(getHeight(root));
 
+        printGreaterThanX(root, 30);
     }
 }
