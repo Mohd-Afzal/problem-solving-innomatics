@@ -2,7 +2,6 @@ package dataStructures.learningBinaryTree;
 
 import dataStructures.QueueNode;
 
-import java.sql.SQLOutput;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -60,6 +59,7 @@ public class BinaryTreeUse {
 
         return root;
     }
+
 
     public static void printLevelOrder(BinaryTreeNode<Integer> root) {
         // Write your code here
@@ -141,6 +141,7 @@ public class BinaryTreeUse {
         return (1 + Math.max(leftHeight, rightHeight));
     }
 
+
     public static void printGreaterThanX(BinaryTreeNode<Integer> root, int x) {
 
         if (root == null) {
@@ -154,6 +155,71 @@ public class BinaryTreeUse {
             System.out.print(root.data + " ");
         }
     }
+
+
+    // 10 20 30 -1 -1 40 50 60 -1 -1 70 80 -1 -1 90 100 -1 -1 110 -1 -1 -1 -1
+    // 10 20 30 40 -1 -1 50 -1 -1 60 70 -1 -1 -1 -1
+    public static int diameter(BinaryTreeNode<Integer> root) {
+
+        // Base Case
+        if (root == null) {
+            return 0;
+        }
+
+        // 1. When Diameter passes through the root of the tree
+        int leftHeight = getHeight(root.leftChild);
+        int rightHeight = getHeight(root.rightChild);
+
+        int myDiameter = leftHeight + rightHeight + 1;
+
+        // 2. When the Diameter is in the left sub-tree
+        int leftDiameter = diameter(root.leftChild);
+
+        // 3. When the Diameter is in the right sub-tree
+        int rightDiameter = diameter(root.rightChild);
+
+
+        return (Math.max(Math.max(leftDiameter, rightDiameter), myDiameter));
+
+    }
+
+
+    // Root Data : LR
+    public static void preOrder(BinaryTreeNode<Integer> root) {
+
+        if (root == null) {
+            return;
+        }
+
+        System.out.print(root.data + " ");
+        preOrder(root.leftChild);
+        preOrder(root.rightChild);
+    }
+
+    // LR : Root data
+    public static void postOrder(BinaryTreeNode<Integer> root) {
+
+        if (root == null) {
+            return;
+        }
+
+        postOrder(root.leftChild);
+        postOrder(root.rightChild);
+        System.out.print(root.data + " ");
+    }
+
+    // L Root Data R
+    public static void inOrder(BinaryTreeNode<Integer> root) {
+
+        if (root == null) {
+            return;
+        }
+
+        inOrder(root.leftChild);
+        System.out.print(root.data + " ");
+        inOrder(root.rightChild);
+    }
+
 
     public static void main(String[] args) {
 //        BinaryTreeNode<Integer> root = new BinaryTreeNode<>(10);
@@ -171,7 +237,20 @@ public class BinaryTreeUse {
 //        printLevelOrder(root);
 //        System.out.println(getSum(root));
 //        System.out.println(getHeight(root));
+//        printGreaterThanX(root, 30);
+//        System.out.println(diameter(root));
 
-        printGreaterThanX(root, 30);
+        System.out.print("Pre-Order: ");
+        preOrder(root);
+        System.out.println();
+
+        System.out.print("Post-Order: ");
+        postOrder(root);
+        System.out.println();
+
+        System.out.print("In-Order: ");
+        inOrder(root);
+        System.out.println();
+
     }
 }
