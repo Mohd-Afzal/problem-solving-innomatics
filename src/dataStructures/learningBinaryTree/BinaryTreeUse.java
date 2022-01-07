@@ -244,9 +244,9 @@ public class BinaryTreeUse {
         preOrder(root);
         System.out.println();
 
-        System.out.print("Post-Order: ");
-        postOrder(root);
-        System.out.println();
+//        System.out.print("Post-Order: ");
+//        postOrder(root);
+//        System.out.println();
 
         System.out.print("In-Order: ");
         inOrder(root);
