@@ -1,5 +1,7 @@
 package recursion;
 
+import java.util.Arrays;
+
 public class SortingAlgos {
 
     public static int[] mergeSortedArrays(int[] first, int[] second) {
@@ -134,6 +136,7 @@ public class SortingAlgos {
 
 //        printArray(mergeSortedArrays(first, second));
 
+//        Arrays.sort(arr); // nlogn
         mergeSort(arr);
         printArray(arr);
     }

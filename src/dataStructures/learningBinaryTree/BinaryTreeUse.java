@@ -221,6 +221,53 @@ public class BinaryTreeUse {
     }
 
 
+    public static BinaryTreeNode<Integer> buildTreeUsingInOrderAndPreOrderHelper(int[] inOrder, int[] preOrder, int inOrderStart, int inOrderEnd, int preOrderStart, int preOrderEnd) {
+        if (preOrderStart > preOrderEnd) {
+            return null;
+        }
+
+        int rootData = preOrder[preOrderStart];
+        BinaryTreeNode<Integer> root = new BinaryTreeNode<>(rootData);
+
+        int rootIndex = -1;
+        for (int i = inOrderStart; i <= inOrderEnd; i++) {
+            if (rootData == inOrder[i]) {
+                rootIndex = i;
+                break;
+            }
+        }
+
+        // This will never happen
+        if (rootIndex == -1) {
+            return null;
+        }
+
+        int leftPreOrderStart = preOrderStart + 1;
+        int leftInOrderStart = inOrderStart;
+        int leftInOrderEnd = rootIndex - 1;
+        int leftPreOrderEnd = leftInOrderEnd - leftInOrderStart + leftPreOrderStart;
+
+        int rightPreOrderStart = leftPreOrderEnd + 1;
+        int rightInOrderStart = rootIndex + 1;
+        int rightPreOrderEnd = preOrderEnd;
+        int rightInOrderEnd = inOrderEnd;
+
+        BinaryTreeNode<Integer> leftSubTree = buildTreeUsingInOrderAndPreOrderHelper(inOrder, preOrder, leftInOrderStart, leftInOrderEnd, leftPreOrderStart, leftPreOrderEnd);
+        BinaryTreeNode<Integer> rightSubTree = buildTreeUsingInOrderAndPreOrderHelper(inOrder, preOrder, rightInOrderStart, rightInOrderEnd, rightPreOrderStart, rightPreOrderEnd);
+
+        root.leftChild = leftSubTree;
+        root.rightChild = rightSubTree;
+
+        return root;
+
+    }
+
+    public static BinaryTreeNode<Integer> buildTreeUsingInOrderAndPreOrder(int[] inOrder, int[] preOrder) {
+        return buildTreeUsingInOrderAndPreOrderHelper(inOrder, preOrder, 0, inOrder.length - 1, 0, preOrder.length - 1);
+    }
+
+
+
     public static void main(String[] args) {
 //        BinaryTreeNode<Integer> root = new BinaryTreeNode<>(10);
 //        BinaryTreeNode<Integer> leftChild = new BinaryTreeNode<>(20);
@@ -233,24 +280,31 @@ public class BinaryTreeUse {
 //        System.out.println("Children of " + root.data + ": " + root.leftChild.data + ", " + root.rightChild.data);
 
 
-        BinaryTreeNode<Integer> root = buildTreeLevelWise();
+//        BinaryTreeNode<Integer> root = buildTreeLevelWise();
 //        printLevelOrder(root);
 //        System.out.println(getSum(root));
 //        System.out.println(getHeight(root));
 //        printGreaterThanX(root, 30);
 //        System.out.println(diameter(root));
 
-        System.out.print("Pre-Order: ");
-        preOrder(root);
-        System.out.println();
+//        System.out.print("Pre-Order: ");
+//        preOrder(root);
+//        System.out.println();
 
 //        System.out.print("Post-Order: ");
 //        postOrder(root);
 //        System.out.println();
 
-        System.out.print("In-Order: ");
-        inOrder(root);
-        System.out.println();
+//        System.out.print("In-Order: ");
+//        inOrder(root);
+//        System.out.println();
+
+
+        int[] inOrder = {40, 20, 50, 10, 30};
+        int[] preOrder = {10, 20, 40, 50, 30};
+
+        BinaryTreeNode<Integer> root = buildTreeUsingInOrderAndPreOrder(inOrder, preOrder);
+        printLevelOrder(root);
 
     }
 }
