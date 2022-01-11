@@ -60,6 +60,52 @@ public class BinaryTreeUse {
         return root;
     }
 
+    // 70 20 100 10 30 80 120 -1 -1 -1 -1 -1 -1 110 130 -1 -1 -1 -1
+    public static BinaryTreeNode<Integer> search(BinaryTreeNode<Integer> root, int x) {
+        if (root == null) {
+            return null;
+        }
+
+        if (root.data.equals(x)) {
+            return root;
+        }
+
+        BinaryTreeNode<Integer> leftAns = search(root.leftChild, x);
+        if (leftAns != null) {
+            return leftAns;
+        }
+
+        BinaryTreeNode<Integer> rightAns = search(root.rightChild, x);
+        if (rightAns != null) {
+            return rightAns;
+        }
+
+        return null;
+    }
+
+
+    public static BinaryTreeNode<Integer> searchInBST(BinaryTreeNode<Integer> root, int x) {
+        if (root == null) {
+            return null;
+        }
+
+        if (root.data.equals(x)) {
+            return root;
+        }
+
+        if (x >= root.data) {
+            return searchInBST(root.rightChild, x);
+        }
+
+        return searchInBST(root.leftChild, x);
+
+//        if (x < root.data) {
+//            return searchInBST(root.leftChild, x);
+//        }
+//
+//        return null;
+    }
+
 
     public static void printLevelOrder(BinaryTreeNode<Integer> root) {
         // Write your code here
@@ -220,7 +266,6 @@ public class BinaryTreeUse {
         inOrder(root.rightChild);
     }
 
-
     public static BinaryTreeNode<Integer> buildTreeUsingInOrderAndPreOrderHelper(int[] inOrder, int[] preOrder, int inOrderStart, int inOrderEnd, int preOrderStart, int preOrderEnd) {
         if (preOrderStart > preOrderEnd) {
             return null;
@@ -280,7 +325,7 @@ public class BinaryTreeUse {
 //        System.out.println("Children of " + root.data + ": " + root.leftChild.data + ", " + root.rightChild.data);
 
 
-//        BinaryTreeNode<Integer> root = buildTreeLevelWise();
+        BinaryTreeNode<Integer> root = buildTreeLevelWise();
 //        printLevelOrder(root);
 //        System.out.println(getSum(root));
 //        System.out.println(getHeight(root));
@@ -300,11 +345,19 @@ public class BinaryTreeUse {
 //        System.out.println();
 
 
-        int[] inOrder = {40, 20, 50, 10, 30};
-        int[] preOrder = {10, 20, 40, 50, 30};
+//        int[] inOrder = {40, 20, 50, 10, 30};
+//        int[] preOrder = {10, 20, 40, 50, 30};
+//        BinaryTreeNode<Integer> root = buildTreeUsingInOrderAndPreOrder(inOrder, preOrder);
+//        printLevelOrder(root);
 
-        BinaryTreeNode<Integer> root = buildTreeUsingInOrderAndPreOrder(inOrder, preOrder);
-        printLevelOrder(root);
+
+        BinaryTreeNode<Integer> ans = searchInBST(root, 30);
+        // Null Check
+        if (ans != null) {
+            System.out.println("Found: " + ans.data);
+        } else {
+            System.out.println("Doesnt Exist!");
+        }
 
     }
 }
