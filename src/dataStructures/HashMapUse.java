@@ -27,19 +27,29 @@ public class HashMapUse {
             }
         }
 
-        Set<Character> keys = map.keySet();
-        for (char key : keys) {
-            System.out.println(key + " : " + map.get(key));
+//        Set<Character> keys = map.keySet();
+//        for (char key : keys) {
+//            System.out.println(key + " : " + map.get(key));
+//        }
+
+//        O(1) -> fetching the values -> using array indexing
+        int maxFrequency = 0; char maxFreqCharacter = '\0';
+        for (int i = 0; i < word.length(); i++) {
+            char eachCharacter = word.charAt(i); // O(1) operation
+            int frequency = map.get(eachCharacter); // Value of eachCharacter in word will be at least 1
+
+            if (frequency > maxFrequency) {
+                maxFrequency = frequency;
+                maxFreqCharacter = eachCharacter;
+            }
         }
 
-        // return the highest freq char
-
-        return '\0';
+        return maxFreqCharacter;
     }
 
     public static void main(String[] args) {
 
-        highestFrequency("abaacaadefbgb");
+        System.out.println(highestFrequency("ggabaacagggadefbggbgggg"));
 
     }
 }
