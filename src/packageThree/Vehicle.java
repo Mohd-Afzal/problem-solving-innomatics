@@ -1,7 +1,7 @@
 package packageThree;
 
 public class Vehicle {
-    protected boolean isAutomatic;
+    boolean isAutomatic;
     protected String fuelType;
     protected int mileage;
     protected String type;
@@ -10,7 +10,7 @@ public class Vehicle {
         this.type = type;
     }
 
-    public void display() {
+    protected void display() {
         System.out.println("isAutomatic: " + this.isAutomatic);
         System.out.println("fuelType: " + this.fuelType);
         System.out.println("mileage: " + this.mileage);
