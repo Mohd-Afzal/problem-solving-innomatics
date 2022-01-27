@@ -138,7 +138,7 @@ public class UnderstandingCollection {
         System.out.println(pq.remove());
         System.out.println(pq.remove());
         System.out.println(pq.remove());
-        
+
 //        System.out.println("Hello World");
     }
 }
