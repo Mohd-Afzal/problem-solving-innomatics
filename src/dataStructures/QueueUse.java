@@ -4,7 +4,7 @@ package dataStructures;
 public class QueueUse {
 
     public static void main(String[] args) {
-//        QueueNode<Integer> queue = new QueueNode<>();
+        QueueNode<Integer> queue = new QueueNode<>();
 //
 ////        Integer data = queue.dequeue();
 ////        System.out.println(data);
@@ -20,8 +20,8 @@ public class QueueUse {
 //
 ////        System.out.println(queue.isEmpty());
 ////
-////        Integer data = queue.dequeue();
-////        System.out.println(data);
+//        Integer data = queue.dequeue();
+//        System.out.println(data);
 //
 //        while (!queue.isEmpty()) {
 //            System.out.println(queue.dequeue());

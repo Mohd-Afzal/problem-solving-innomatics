@@ -1,8 +1,35 @@
 package dynamicProgramming;
 
-import java.sql.SQLClientInfoException;
 
 public class GettingStarted {
+
+
+    public static void throwsExceptionFunc(int[] arr) throws ArrayIndexOutOfBoundsException {
+        for (int i = 0; ; i++) {
+            if (i >= arr.length) {
+                throw new ArrayIndexOutOfBoundsException();
+//                System.out.println("Invalid index!");
+//                return;
+            }
+
+            System.out.print(arr[i] + " ");
+        }
+    }
+
+
+    public static void throwExceptionFunc(int arr[]) {
+        try {
+            for (int i = 0; i <= 4; i++) {
+                System.out.print(arr[i] + " ");
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+//            e.printStackTrace();
+//            System.out.println("You accessed an invalid index of the array");
+            throw e;
+        }
+
+        System.out.println("Hello World!");
+    }
 
     private static int fibIterative(int n) {
         int[] fibArray = new int [n + 1];
@@ -77,35 +104,63 @@ public class GettingStarted {
 
         // Exception Handling
         int a = 10;
-        int b = 0;
+        int b = 10;
         int arr[] = {2, 3, 4, 5};
-        try {
-            for (int i = 0; i <= 4; i++) {
-                System.out.println(arr[i]);
-            }
 
-            int div = a / b;
-            System.out.println(div);
-            //SQL Exception
-            // Not going to be run post line 81
-        }
-        catch (ArithmeticException e) {
-            System.out.println(e);
-            System.out.println("Hey! There was an exception! Executing lines afterwards!");
-        }
-        catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println(e);
-        }
-        catch (Exception e) {
-            System.out.println(e);
-        }
+//        try {
+//
+//            // Opened a file
+//            for (int i = 0; i <= 4; i++) {
+//                System.out.println(arr[i]);
+//            }
+//            int div = a / b;
+//            System.out.println(div);
+//            //SQL Exception
+//            // Not going to be run post line 81
+//
+//            // close your resource
+//        }
+//        catch (ArithmeticException e) {
+//            System.out.println(e);
+//            System.out.println("Hey! There was an exception! Executing lines afterwards!");
+//        }
+//        catch (ArrayIndexOutOfBoundsException e) {
+//            System.out.println(e);
+//        }
+//        catch (Exception e) {
+//            System.out.println(e);
+//        }
+//        finally {
+//            // close all the resources
+//            // closing the IO resources
+//            // closing the file
+//            System.out.println("Executing the Finally Block!");
+//        }
 
-        System.out.println("Hello World!");
+
+//        try {
+//            for (int i = 0; i <= 4; i++) {
+//                System.out.print(arr[i] + " ");
+//            }
+//        } catch (ArrayIndexOutOfBoundsException e) {
+////            e.printStackTrace();
+////            System.out.println("You accessed an invalid index of the array");
+//
+//            throw e;
+//        }
+
+
+//        throwExceptionFunc(arr);
+//        try {
+//            throwExceptionFunc(arr);
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+
+
+        throwsExceptionFunc(arr);
+//        System.out.println("Hello World!");
         // Will be executed after line 81 as well coz we handled the exception using try catch!
-
-
-
-
 
     }
 }
